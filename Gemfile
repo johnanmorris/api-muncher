@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Required due to an incompatibility between TurboLinks and Foundation.
 gem 'jquery-turbolinks'
 
-gem 'faker'
 gem 'awesome_print'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,6 +41,8 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'better_errors'
+  gem 'minitest-vcr'
+  gem 'webmock'
 end
 
 group :development do
@@ -50,4 +51,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem 'minitest-reporters'
 end
