@@ -8,14 +8,19 @@ require 'minitest/reporters'
 VCR.configure do |config|
   config.cassette_library_dir = 'test/cassettes' # folder where casettes will be located
   config.hook_into :webmock # tie into this other tool called webmock
-  # config.before_record do |i|
-  #   i.response.decompress
-  # end
   config.default_cassette_options = {
     :record => :new_episodes,    # record new data when we don't have it yet
-    :match_requests_on => [:method, :uri, :body], # The http method, URI and body of a request all need to match
-    # :decode_compressed_response => true
+    :match_requests_on => [:method, :uri, :body] # The http method, URI and body of a request all need to match
   }
+  # Don't leave our app_ids and keys lying around in a cassette file.
+  config.filter_sensitive_data("<EDAMAM_APP_ID>") do
+    ENV['EDAMAM_APP_ID']
+  end
+
+  config.filter_sensitive_data("<EDAMAM_KEY>") do
+    ENV['EDAMAM_KEY']
+  end
+
 end
 
 class ActiveSupport::TestCase

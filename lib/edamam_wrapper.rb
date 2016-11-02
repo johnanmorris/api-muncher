@@ -9,6 +9,7 @@ class EdamamWrapper
     @data ||= HTTParty.get(url).parsed_response
     results = []
     hits = query["hits"]
+    puts "first query: #{hits.first}"
     unless hits.empty?
       hits.each do |hit|
         recipe = hit["recipe"]
