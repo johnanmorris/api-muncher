@@ -12,9 +12,10 @@ class EdamamWrapper
     unless hits.empty?
       hits.each do |hit|
         recipe = hit["recipe"]
-        wrapper = Recipe.new(recipe["label"], recipe["image"], recipe["source"],
-                      recipe["url"], recipe["yield"], recipe["dietLabels"],
-                      recipe["calories"], recipe["ingredientLines"], recipe["totalNutrients"])
+        wrapper = Recipe.new(recipe["label"], image: recipe["image"], source: recipe["source"],
+                      url: recipe["url"], servings: recipe["yield"], diet_labels: recipe["dietLabels"],
+                      calories: recipe["calories"], ingredient_lines: recipe["ingredientLines"],
+                      total_nutrients: recipe["totalNutrients"])
         results << wrapper
       end
     end
