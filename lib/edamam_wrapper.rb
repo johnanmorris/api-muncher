@@ -6,9 +6,9 @@ class EdamamWrapper
 
   def self.all_results(query, from, to)
     url = BASE_URL + "?q=#{query}" + "&from=#{from}" + "&to=#{to}" + "&app_id=#{APP_ID}" + "&app_key=#{APP_KEY}"
-    @data ||= HTTParty.get(url).parsed_response
+    data ||= HTTParty.get(url).parsed_response
     results = []
-    hits = query["hits"]
+    hits = data["hits"]
     puts "first query: #{hits.first}"
     unless hits.empty?
       hits.each do |hit|
