@@ -37,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    ansi (1.5.0)
     arel (6.0.3)
     awesome_print (1.7.0)
     better_errors (2.1.1)
@@ -68,6 +69,9 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -91,11 +95,17 @@ GEM
     minispec-metadata (2.0.0)
       minitest
     minitest (5.9.1)
+    minitest-reporters (1.1.12)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     minitest-vcr (1.4.0)
       minispec-metadata (~> 2.0)
       minitest (>= 4.7.5)
       vcr (>= 2.9)
     multi_json (1.12.1)
+    multi_xml (0.5.5)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     rack (1.6.4)
@@ -128,6 +138,7 @@ GEM
     rake (11.3.0)
     rdoc (4.2.2)
       json (~> 1.4)
+    ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -179,9 +190,11 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  httparty (~> 0.13.7)
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  minitest-reporters
   minitest-vcr
   rails (= 4.2.7)
   sass-rails (~> 5.0)
