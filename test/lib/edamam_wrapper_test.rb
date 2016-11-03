@@ -8,7 +8,7 @@ class EdamamWrapperTest < ActiveSupport::TestCase
       assert_kind_of Array, recipes
       assert_not recipes.empty?
       10.times do |i|
-        assert_kind_of Recipe, recipes[i]
+        assert_kind_of EdamamWrapper, recipes[i]
       end
     end
   end
