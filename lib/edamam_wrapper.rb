@@ -15,7 +15,7 @@ class EdamamWrapper
     unless hits.empty?
       hits.each do |hit|
         recipe = hit["recipe"]
-        wrapper = Recipe.new(recipe["label"], search_term, image: recipe["image"], source: recipe["source"],
+        wrapper = Recipe.new(recipe["label"], image: recipe["image"], source: recipe["source"],
                       url: recipe["url"], servings: recipe["yield"], diet_labels: recipe["dietLabels"],
                       calories: recipe["calories"], ingredient_lines: recipe["ingredientLines"],
                       total_nutrients: recipe["totalNutrients"])

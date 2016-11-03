@@ -3,10 +3,6 @@ class RecipesController < ApplicationController
 
   def index
     @query = params[:search]
-    @recipes = Recipe.all
+    @recipes = Recipe.all(@query)
   end
-
-  # def show
-  #   @recipe = Recipe.find(params[:name])
-  # end
 end
