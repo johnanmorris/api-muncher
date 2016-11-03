@@ -1,8 +1,9 @@
 class Recipe
-  attr_reader :name, :image, :source, :url, :servings, :diet_labels, :calories, :ingredient_lines, :total_nutrients
+  attr_reader :name, :uri, :image, :source, :url, :servings, :diet_labels, :calories, :ingredient_lines, :total_nutrients
 
-  def initialize(name, info = {} )
+  def initialize(name, uri, info = {} )
     @name = name
+    @uri = uri
     @image = info[:image]
     @source = info[:source]
     @url = info[:url]
@@ -13,8 +14,7 @@ class Recipe
     @total_nutrients = info[:total_nutrients]
   end
 
-  def self.all(query)
-    results = EdamamWrapper.all_results(query)
+  def self.all(query = nil)
+    EdamamWrapper.all_results(query)
   end
-
 end
