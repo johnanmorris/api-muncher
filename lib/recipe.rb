@@ -22,4 +22,5 @@ class Recipe
     result = all(query).select do |recipe|
       recipe.uri == uri
     end
+    
 end
