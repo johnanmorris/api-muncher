@@ -1,7 +1,12 @@
 class RecipesController < ApplicationController
-  resources :recipes, except: [:edit, :update, :destroy]
+  def search; end
 
-  # def index
-  #   @all = EdamamWrapper.all_results(params[""])
+  def index
+    @query = params[:search]
+    @recipes = Recipe.all
+  end
+
+  # def show
+  #   @recipe = Recipe.find(params[:name])
   # end
 end

@@ -1,0 +1,14 @@
+<h1>Results</h1>
+<p>
+  You searched for <strong><%= @query %></strong>!
+</p>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= image_tag(recipe.image) %>
+      <%= link_to recipe.name, recipe_path(recipe) %>
+    </li>
+
+  <% end %>
+</ul>
