@@ -1,14 +1,19 @@
-<h1>Results</h1>
-<p>
+<h2>
   You searched for <strong><%= @query %></strong>!
-</p>
+</h2>
 
-<ul>
+<section class="row small-6 large-6">
+  <p class="column">
+    <%= link_to "Search again", search_path, class: "success button" %>
+  </p>
+</section>
+
+<main class="row small-up-2 medium-up-3 large-up-4">
   <% @recipes.each do |recipe| %>
-    <li>
-      <%= image_tag(recipe.image) %>
+    <p class="column">
+      <%= image_tag(recipe.image, class: "thumbnail") %>
       <%= link_to recipe.name, recipe_path(recipe.uri) %>
-    </li>
+    </p>
 
   <% end %>
-</ul>
+</main>

@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+  margin-top: 3em;
+  margin-left: 5em;
+}
+
+footer {
+  clear: both;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+ul ul {
+  list-style: none;
+}

@@ -37,7 +37,7 @@ class RecipeTest < ActiveSupport::TestCase
     name = "chicken pot pie"
     uri = "something something"
     recipe = Recipe.new(name, uri)
-    options = [:image, :source, :url, :servings, :diet_labels, :calories, :ingredient_lines, :total_nutrients]
+    options = [:image, :source, :url, :servings, :diet_labels, :calories, :ingredient_lines, :nutrients]
     options.each do |option|
       assert_respond_to recipe, option
     end

@@ -1,6 +1,73 @@
 <% if @recipe.nil? %>
-<h1>Nothing to see here!</h1>
+  <h2>Nothing to see here!</h2>
 <% else %>
-<h1><%= @recipe.name %></h1>
+  <header>
+    <h2>
+      <%= @recipe.name %>
+      <small>(Source: <%= link_to "#{@recipe.source}", @recipe.url %>)</small>
+    </h2>
 
+    <div class="button-group">
+      <%= link_to "Back to Results", recipes_path, class: "secondary button" %>
+      <%= link_to "New Search", search_path, class: "success button" %>
+    </div>
+  </header>
+
+  <section class="media-object">
+
+    <div class="media-object-section">
+      <%= image_tag(@recipe.image, class:"thumbnail") %>
+    </div>
+
+    <div class="media-object-section">
+      <p>
+        Servings: <%= @recipe.servings %>
+      <p>
+
+      <p>
+        Diet Labels: <%= @recipe.diet_labels.join(", ") %>
+      </p>
+    </div>
+
+  </section>
+
+  <section>
+    <h3>
+      Ingredients
+    </h3>
+
+    <ul>
+      <% @recipe.ingredient_lines.each do |line| %>
+        <li>
+          <%= line %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section>
+    <h3>
+      Nutritional Information
+    </h3>
+    <ul>
+      <% @recipe.nutrients.each do |nutrient| %>
+      <li>
+        <%= nutrient["label"] %>:
+        <%= (nutrient["total"]).round %>
+        <%= nutrient["unit"] %>
+          <% if nutrient["sub"] %>
+          <ul>
+            <% nutrient["sub"].each do |item| %>
+              <li>
+                <%= item["label"] %>:
+                <%= (item["total"]).round %>
+                <%= item["unit"] %>
+              </li>
+            <% end %>
+          </ul>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
 <% end %>

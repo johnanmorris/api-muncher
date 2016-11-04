@@ -18,7 +18,7 @@ class EdamamWrapper
         wrapper = Recipe.new(recipe["label"], recipe["uri"], image: recipe["image"], source: recipe["source"],
                       url: recipe["url"], servings: recipe["yield"], diet_labels: recipe["dietLabels"],
                       calories: recipe["calories"], ingredient_lines: recipe["ingredientLines"],
-                      total_nutrients: recipe["totalNutrients"])
+                      nutrients: recipe["digest"])
         results << wrapper
 
       end
@@ -34,7 +34,7 @@ class EdamamWrapper
     recipe = Recipe.new(data["label"], data["uri"], image: data["image"], source: data["source"],
                   url: data["url"], servings: data["yield"], diet_labels: data["dietLabels"],
                   calories: data["calories"], ingredient_lines: data["ingredientLines"],
-                  total_nutrients: data["totalNutrients"])
+                  nutrients: data["digest"])
     return recipe
   end
 end
