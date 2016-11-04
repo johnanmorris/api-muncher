@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
+  def setup
+    Recipe.reset
+  end
+
   test "can be created with a name and uri" do
     name = "chicken pot pie"
     uri = "http://www.something.com/something"

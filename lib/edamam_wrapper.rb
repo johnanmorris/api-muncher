@@ -5,7 +5,6 @@ class EdamamWrapper
   APP_ID = ENV["EDAMAM_APP_ID"]
   APP_KEY = ENV["EDAMAM_KEY"]
 
-
   def self.all_results(query)
     url = BASE_URL + "?q=#{query}" + "&app_id=#{APP_ID}" + "&app_key=#{APP_KEY}"
     data ||= HTTParty.get(url).parsed_response

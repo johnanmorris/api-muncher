@@ -17,7 +17,17 @@ class Recipe
     @nutrients = info[:nutrients]
   end
 
+  @results = nil
+
   def self.all(query = nil)
-    EdamamWrapper.all_results(query)
+    @results = []
+    EdamamWrapper.all_results(query).each do |result|
+      @results << result
+    end
+    return @results
+  end
+
+  def self.reset
+    @results = nil
   end
 end

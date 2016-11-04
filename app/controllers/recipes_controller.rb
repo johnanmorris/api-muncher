@@ -1,15 +1,16 @@
 class RecipesController < ApplicationController
-  def search; end
+  def search
+    session.delete(:query)
+  end
 
   def index
-    @query = params[:search]
-    session[:query] = @query
+    params[:search] ||= session[:query]
+    session[:query] = params[:search]
+    Recipe.reset
     @recipes = Recipe.all(session[:query])
   end
 
   def show
-    @query = session[:query]
     @recipe = EdamamWrapper.find(params[:id])
-    # raise
   end
 end
