@@ -2,6 +2,9 @@ class Recipe
   attr_reader :name, :uri, :image, :source, :url, :servings, :diet_labels, :calories, :ingredient_lines, :total_nutrients
 
   def initialize(name, uri, info = {} )
+    if name.nil? || name.empty? || uri.nil? || uri.empty?
+      raise ArgumentError
+    end
     @name = name
     @uri = uri
     @image = info[:image]
