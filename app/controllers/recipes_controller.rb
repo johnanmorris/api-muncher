@@ -7,7 +7,8 @@ class RecipesController < ApplicationController
     params[:search] ||= session[:query]
     session[:query] = params[:search]
     Recipe.reset
-    @recipes = Recipe.all(session[:query])
+    @recipes, @page_data = Recipe.all(session[:query])
+    session[:page] = 1
   end
 
   def show

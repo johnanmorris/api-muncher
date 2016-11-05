@@ -1,14 +1,26 @@
 require 'test_helper'
 
 class EdamamWrapperTest < ActiveSupport::TestCase
-  test "self.all_results returns an array of Recipes" do
+  test "self.all_results returns an array with recipes and page data" do
 
     VCR.use_cassette("recipes") do
-      recipes = EdamamWrapper.all_results("chocolate cheesecake graham cracker")
-      assert_kind_of Array, recipes
-      assert_not recipes.empty?
+      results = EdamamWrapper.all_results("chocolate cheesecake graham cracker")
+      assert_kind_of Array, results
+      assert_not results.empty?
+
+      recipe_data = results.first
+      page_data = results.last
+
       10.times do |i|
-        assert_kind_of Recipe, recipes[i]
+        assert_kind_of Recipe, recipe_data[i]
+      end
+
+      assert_kind_of Hash, page_data
+      required_keys = [:from, :to, :count, :more, :pages]
+      page_data.each do |key, value|
+        assert_includes required_keys, key
+        assert_not key.nil?
+        assert_not value.nil?
       end
     end
   end

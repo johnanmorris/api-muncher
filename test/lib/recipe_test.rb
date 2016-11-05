@@ -63,13 +63,24 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal options[:servings], recipe.servings
   end
 
-  test "Recipe.all(query) should return an array of recipes" do
+  test "Recipe.all(query) should return a 2-item array of with an array of recipe items and a hash " do
     VCR.use_cassette("recipes") do
-      recipes = Recipe.all("chocolate cheesecake")
-      assert_kind_of Array, recipes
-      assert_not recipes.empty?
+      results = Recipe.all("chocolate cheesecake")
+      assert_kind_of Array, results
+      assert_not results.empty?
+
+      recipes, page_data = results.first, results.last
+
       10.times do |i|
         assert_kind_of Recipe, recipes[i]
+      end
+
+      assert_kind_of Hash, page_data
+      required_keys = [:from, :to, :count, :more, :pages]
+      page_data.each do |key, value|
+        assert_includes required_keys, key
+        assert_not key.nil?
+        assert_not value.nil?
       end
     end
   end

@@ -18,16 +18,27 @@ class Recipe
   end
 
   @results = nil
+  @page_data = nil
 
   def self.all(query = nil)
     @results = []
-    EdamamWrapper.all_results(query).each do |result|
+    @page_data = {}
+    query_data, page_data = EdamamWrapper.all_results(query)
+
+    query_data.each do |result|
       @results << result
     end
-    return @results
+
+    page_data.each do |key, value|
+      @page_data[key] = value
+    end
+
+    return @results, @page_data
   end
 
   def self.reset
     @results = nil
+    @page_data = nil
   end
+
 end
