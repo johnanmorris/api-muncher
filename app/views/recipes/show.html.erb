@@ -4,7 +4,7 @@
   <header>
     <h2>
       <%= @recipe.name %>
-      <small>(Source: <%= link_to "#{@recipe.source}", @recipe.url %>)</small>
+      <small>(Source: <%= link_to "#{@recipe.source}", @recipe.url, target: "_blank" %>)</small>
     </h2>
 
     <div class="button-group">
