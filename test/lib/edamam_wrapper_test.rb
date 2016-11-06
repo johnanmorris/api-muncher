@@ -4,24 +4,23 @@ class EdamamWrapperTest < ActiveSupport::TestCase
   test "self.all_results returns an array with recipes and page data" do
 
     VCR.use_cassette("recipes") do
-      results = EdamamWrapper.all_results("chocolate cheesecake graham cracker")
+      results = EdamamWrapper.all_results("chocolate cheesecake graham cracker", 1)
       assert_kind_of Array, results
       assert_not results.empty?
 
       recipe_data = results.first
       page_data = results.last
 
+      # Check the first 10; I know that that means
+      # I'm running the risk that the 11th result isn't
+      # what I want, but I don't think I would want to
+      # run an assert on 100+ results. I'm making a
+      # tradeoff on errors vs. speed.
       10.times do |i|
         assert_kind_of Recipe, recipe_data[i]
       end
 
-      assert_kind_of Hash, page_data
-      required_keys = [:from, :to, :count, :more, :pages]
-      page_data.each do |key, value|
-        assert_includes required_keys, key
-        assert_not key.nil?
-        assert_not value.nil?
-      end
+      assert_kind_of Fixnum, page_data
     end
   end
 

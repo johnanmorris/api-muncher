@@ -5,23 +5,13 @@ class EdamamWrapper
   APP_ID = ENV["EDAMAM_APP_ID"]
   APP_KEY = ENV["EDAMAM_KEY"]
 
-  def self.all_results(query)
-    url = BASE_URL + "?q=#{query}" + "&app_id=#{APP_ID}" + "&app_key=#{APP_KEY}"
+  def self.all_results(query, page)
+    start = (page.to_i - 1) * 10
+    url = BASE_URL + "?q=#{query}" + "&from=#{start}" + "&app_id=#{APP_ID}" + "&app_key=#{APP_KEY}"
     data ||= HTTParty.get(url).parsed_response
 
     results = []
-    page_data = {}
-
-    page_data[:from] = data["from"]
-    page_data[:to] = data["to"]
-    page_data[:count] = data["count"]
-    page_data[:more] = data["more"]
-
-    if page_data[:count] < 10
-      page_data[:pages] = 1
-    else
-      page_data[:pages] = (page_data[:count] / 10) + 1
-    end
+    count = data["count"]
 
     hits = data["hits"]
 
@@ -36,7 +26,7 @@ class EdamamWrapper
 
       end
     end
-    return results, page_data
+    return results, count
   end
 
   def self.find(uri)

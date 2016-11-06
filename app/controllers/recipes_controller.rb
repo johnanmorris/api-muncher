@@ -6,9 +6,9 @@ class RecipesController < ApplicationController
   def index
     params[:search] ||= session[:query]
     session[:query] = params[:search]
-    Recipe.reset
-    @recipes, @page_data = Recipe.all(session[:query])
-    session[:page] = 1
+    @page = (params[:page] || 1).to_i
+    @recipes, @count = EdamamWrapper.all_results(session[:query], @page)
+    @total_pages = ((@count.to_i + 9) / 10) || 1
   end
 
   def show
