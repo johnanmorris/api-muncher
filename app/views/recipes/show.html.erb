@@ -7,13 +7,13 @@
       <small>(Source: <%= link_to "#{@recipe.source}", @recipe.url, target: "_blank" %>)</small>
     </h2>
 
-    <div class="button-group">
+    <nav class="button-group small-text-center medium-text-center large-text-center">
       <%= link_to "Back to Results", recipes_path, class: "secondary button" %>
       <%= link_to "New Search", search_path, class: "success button" %>
-    </div>
+    </nav>
   </header>
 
-  <section class="media-object">
+  <section class="media-object large-offset-3">
 
     <div class="media-object-section">
       <%= image_tag(@recipe.image, class:"thumbnail") %>
@@ -21,53 +21,59 @@
 
     <div class="media-object-section">
       <p>
-        Servings: <%= @recipe.servings %>
+        <strong>Servings:</strong> <%= @recipe.servings %>
       <p>
 
       <p>
-        Diet Labels: <%= @recipe.diet_labels.join(", ") %>
+        <strong>Diet Labels</strong> <%= @recipe.diet_labels.join(", ") %>
       </p>
     </div>
 
   </section>
 
-  <section>
-    <h3>
-      Ingredients
-    </h3>
+  <main class="row">
+    <section class="small-12 medium-4 large-4 columns">
+      <h3>
+        Ingredients
+      </h3>
 
-    <ul>
-      <% @recipe.ingredient_lines.each do |line| %>
-        <li>
-          <%= line %>
-        </li>
-      <% end %>
-    </ul>
-  </section>
+      <ul>
+        <% @recipe.ingredient_lines.each do |line| %>
+          <li>
+            <%= line %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
 
-  <section>
-    <h3>
-      Nutritional Information
-    </h3>
-    <ul>
-      <% @recipe.nutrients.each do |nutrient| %>
-      <li>
-        <%= nutrient["label"] %>:
-        <%= (nutrient["total"]).round %>
-        <%= nutrient["unit"] %>
-          <% if nutrient["sub"] %>
-          <ul>
-            <% nutrient["sub"].each do |item| %>
-              <li>
-                <%= item["label"] %>:
-                <%= (item["total"]).round %>
-                <%= item["unit"] %>
-              </li>
+    <section class="small-12 medium-8 large-8 columns">
+      <h3>
+        Nutritional Information
+      </h3>
+      <ul class="row">
+        <% @recipe.nutrients.each do |nutrient| %>
+        <li class="small-12 large-4 columns">
+          <%= nutrient["label"] %>:
+          <%= (nutrient["total"]).round %>
+          <%= nutrient["unit"] %>
+            <% if nutrient["sub"] %>
+            <ul>
+              <% nutrient["sub"].each do |item| %>
+                <li>
+                  <%= item["label"] %>:
+                  <%= (item["total"]).round %>
+                  <%= item["unit"] %>
+                </li>
+              <% end %>
+            </ul>
             <% end %>
-          </ul>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </section>
+          </li>
+        <% end %>
+      </ul>
+      <div class="row">
+        <%= link_to image_tag("edaman-logo.png"), "http://developer.edamam.com" %>
+      </div>
+    </section>
+  </main>
+
 <% end %>
