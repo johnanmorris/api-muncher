@@ -25,7 +25,12 @@
       <p>
 
       <p>
-        <strong>Diet Labels</strong> <%= @recipe.diet_labels.join(", ") %>
+        <strong>Diet Labels: </strong>
+        <% if @recipe.diet_labels.empty? %>
+          none
+        <% else %>
+        <%= @recipe.diet_labels.join(", ") %>
+        <% end %>
       </p>
     </div>
 
@@ -48,8 +53,9 @@
 
     <section class="small-12 medium-8 large-8 columns">
       <h3>
-        Nutritional Information
+        Nutritional Information <%= link_to image_tag("edaman-logo.png"), "http://developer.edamam.com" %>
       </h3>
+
       <ul class="row">
         <% @recipe.nutrients.each do |nutrient| %>
         <li class="small-12 large-4 columns">
@@ -70,9 +76,6 @@
           </li>
         <% end %>
       </ul>
-      <div class="row">
-        <%= link_to image_tag("edaman-logo.png"), "http://developer.edamam.com" %>
-      </div>
     </section>
   </main>
 
